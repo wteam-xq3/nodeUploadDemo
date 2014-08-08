@@ -22,6 +22,8 @@ function start(response, postData) {
 function upload(response, request) {
   console.log("Request handler 'upload' was called.");
   var form = new formidable.IncomingForm();
+  //由于Node.js安装的盘符和写的地方不在一个盘符，跨目录重命名文件导致的问题。可以多些下面一句代码，重设临时上传路径
+  form.uploadDir = "./tmp";  
   console.log("about to parse");
   form.parse(request, function(error, fields, files){
     console.log("parsing done");
